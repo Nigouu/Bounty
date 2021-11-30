@@ -1,23 +1,69 @@
 import React from 'react';
-import { FlatList, View, StyleSheet, Text } from 'react-native';
+import { FlatList, View, StyleSheet, Text, Image, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
   separator: {
     height: 10,
   },
   container: {
+    width: Dimensions.get('window').width,
     flex: 1,
-    paddingTop: 40,
-    paddingHorizontal: 20,
+    padding: 15,
+    // paddingTop: 10,
+    // paddingHorizontal: 10,
     backgroundColor: '#fff',
   },
   item: {
+    width: 300,
     flex: 1,
-    marginHorizontal: 10,
-    marginTop: 24,
-    padding: 30,
-    backgroundColor: 'pink',
-    fontSize: 24,
+    marginHorizontal: 5,
+    marginTop: 12,
+    padding: 5,
+    backgroundColor: 'white',
+    fontSize: 16,
+  },
+  logoContainer:{
+    padding: 10
+  },
+  logo:{
+    width: 66,
+    height: 58,
+  },
+  textBold: {
+    flex: 1,
+    marginHorizontal: 5,
+    marginTop: 12,
+    padding: 5,
+    backgroundColor: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    paddingRight: 30
+  },
+  textLanguage: {
+    // flex: 1,
+    alignSelf: 'flex-start',
+    marginHorizontal: 5,
+    marginTop: 12,
+    padding: 5,
+    backgroundColor: 'blue',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  flexContainerLargeColumn: {
+    flexDirection: 'column',
+  },
+  flexContainerLargeRow: {
+    flexDirection: 'row',
+  },
+  flexContainerMediumColumn: {
+    flexDirection: 'column',
+    alignItems: 'center'
+
+  },
+  flexContainerMediumRow: {
+    flexDirection: 'row',
+    
   },
 });
 
@@ -76,15 +122,41 @@ const RepositoryList = () => {
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => (
-        <Text style={styles.item}>
-            Full name: {item.fullName}{"\n"}
-            Description: {item.description}{"\n"}
-            Language: {item.language}{"\n"}
-            Stars: {item.stargazersCount}{"\n"}
-            Forks: {item.forksCount}{"\n"}
-            Reviews: {item.reviewCount}{"\n"}
-            Rating: {item.ratingAverage}
-        </Text>
+        <View style={styles.container}>
+          <View style={styles.flexContainerLargeColumn}>
+            <View style={styles.flexContainerLargeRow}>
+              <View style={styles.logoContainer}>
+                <Image
+                    style={styles.logo}
+                    source={{uri:item.ownerAvatarUrl}}
+                  />
+                </View>
+                <View style={styles.flexContainerLargeColumn}>
+                  <Text style={styles.textBold}> {item.fullName} </Text>
+                  <Text style={styles.item}> {item.description} </Text>
+                  <Text style={styles.textLanguage}> {item.language} </Text>
+                </View>
+            </View>
+            <View style={styles.flexContainerMediumRow}>
+              <View style={styles.flexContainerMediumColumn}>
+                <Text style={styles.textBold}> {item.stargazersCount}</Text>
+                <Text>Stars</Text>
+              </View>
+              <View style={styles.flexContainerMediumColumn}>
+                <Text style={styles.textBold}> {item.forksCount} </Text>
+                <Text>Forks</Text>
+              </View>
+              <View style={styles.flexContainerMediumColumn}>
+                <Text style={styles.textBold}> {item.reviewCount} </Text>
+                <Text>Reviews</Text>
+              </View>
+              <View style={styles.flexContainerMediumColumn}>
+                <Text style={styles.textBold}> {item.ratingAverage} </Text>
+                <Text>Ratings</Text>
+              </View>
+            </View>
+          </View>
+        </View>
       )}
       // other props
     />
