@@ -9,8 +9,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     flex: 1,
     padding: 15,
-    // paddingTop: 10,
-    // paddingHorizontal: 10,
     backgroundColor: '#fff',
   },
   item: {
@@ -158,7 +156,6 @@ const RepositoryList = () => {
           </View>
         </View>
       )}
-      // other props
     />
   );
   
